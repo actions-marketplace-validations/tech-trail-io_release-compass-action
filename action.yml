@@ -1,0 +1,61 @@
+name: Submit Release Compass draft
+description: >
+  Open a customer-facing changelog draft. Publishing stays in the dashboard.
+author: TechTrail
+branding:
+  icon: send
+  color: blue
+
+inputs:
+  token:
+    description: Project API key (rc_live_…). Store as a secret. The key selects the project.
+    required: true
+  api-url:
+    description: API origin, no trailing slash
+    required: false
+    default: https://api.release-compass.app
+  version:
+    description: Version string, e.g. v0.3.0
+    required: true
+  title:
+    description: Draft title. Defaults to version.
+    required: false
+    default: ""
+  body:
+    description: Source notes (markdown or plain text)
+    required: false
+    default: ""
+  url:
+    description: Optional source URL (GitHub release, ticket, …)
+    required: false
+    default: ""
+  channel:
+    description: stable, rc, beta, alpha, or canary. Omit to infer from version.
+    required: false
+    default: ""
+  idempotency-key:
+    description: Optional retry key so the same run does not open a second draft
+    required: false
+    default: ""
+
+outputs:
+  id:
+    description: Release id
+  version:
+    description: Version stored on the draft
+  slug:
+    description: Project slug resolved from the API key
+  channel:
+    description: Release channel
+  status:
+    description: DRAFT or PUBLISHED
+  created-at:
+    description: ISO-8601 createdAt
+  changelog-url:
+    description: Public changelog URL for this version
+  editor-url:
+    description: Dashboard editor URL for this draft
+
+runs:
+  using: node24
+  main: index.cjs

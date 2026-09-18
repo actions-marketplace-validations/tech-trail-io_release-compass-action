@@ -1,0 +1,21 @@
+{
+  "name": "release-compass-action",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Open a Release Compass changelog draft from GitHub Actions",
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --format=cjs --minify --outfile=index.cjs --legal-comments=none",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "esbuild": "^0.25.9",
+    "typescript": "5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
